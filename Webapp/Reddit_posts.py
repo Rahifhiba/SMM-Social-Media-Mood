@@ -1,0 +1,46 @@
+#!/usr/bin/env python3
+
+from dotenv import load_dotenv
+import os
+import pandas as pd
+import praw
+from langdetect import detect, LangDetectException
+
+load_dotenv()
+
+def is_eng(text):
+    """checks if text is in english"""
+    try:
+        # Combine title and text for better detection accuracy
+        combined = text if len(text) > 50 else text * 3
+        return detect(combined) == 'en'
+    except LangDetectException:
+        return False
+
+
+def get_reddit_posts(search_query):
+    """fetches posts from reddit related to query"""
+    reddit = praw.Reddit(
+        client_id=os.getenv("CLIENT_ID"),
+        client_secret=os.getenv("CLIENT_SECRET"),
+        user_agent=os.getenv("USER_AGENT"),
+    )
+
+    subreddit = reddit.subreddit("all")
+    posts = subreddit.search(search_query)
+
+    posts_data = []
+    for post in posts:
+        if post.selftext:
+            content = f"{post.title} {post.selftext}".strip()
+            if is_eng(content):
+                posts_data.append(
+                    {
+                        "title": post.title,
+                        "author": post.author.name if post.author else "[Deleted]",
+                        "text": post.selftext,
+                    }
+                )
+
+    df_posts = pd.DataFrame(posts_data)
+    df_posts.to_csv("posts.csv", index=False)

@@ -1,45 +1,17 @@
-<!DOCTYPE html>
+{% extends "base.html" %}
 
-<html>
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>Social Media Mood</title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" type="text/css"href="../static/styles/style.css">
-    </head>
-    <body>
-        <div class="all">
-            <div class="img">
-                <img src="../static/images/emojie.png" alt="emojie" class="emojie">
-            </div>
-            <div class="container">
-                <form method="POST" action="/analyze">
-                    <h1> Social Media Mood </h1>
-                    <h2>  Sentiment Analysis Of Social Media Posts </h2> <br>
-                    <h3> Enter a topic to analyze the sentiment of social media posts </h3>
-                    <label for="topic"></label>
-                    <input id="topic" name="topic" type="text" placeholder="Enter a topic..." required><br><br>
-                    <input id= "sub" type="submit" value="Check">
-                </form>
-            </div>
-            <div class="result">
-                {% if topic%}
-                    {% if data %}
-                        <h3>Showing results for "{{ topic }}"</h3>
-                        <p class="pos">Positive Tweets: {{ positive_percentage }}%</p>
-                        <p class="neg">Negative Tweets: {{ negative_percentage }}%</p>
-                        <div class="tweets">
-                            {{ data|safe }}
-                        </div>
-                    {% elif error %}
-                        <div class="error">{{ error }}</div>
-                    {% endif %}
-                {% else %}
-                 <p class="Error">{{error}}</p>
-                {% endif %}
-            </div>
-        </div>
-    </body>
-</html>
+{% block content %}
+    <div class="img">
+        <img src="{{ url_for('static', filename='images/default.png') }}" alt="emojie" class="emojie">
+    </div>
+    <div class="container">
+        <form method="POST" action="/analyze/">
+            <h1>Social Media Mood</h1>
+            <h2>Sentiment Analysis Of Social Media Posts</h2>
+            <h3>Enter a topic to analyze the sentiment of social media posts</h3><br>
+            <input id="topic" name="topic" type="text" placeholder="Enter a topic..." required><br><br>
+            <input id="sub" type="submit" value="Check">
+        </form>
+    </div>
+    {% include 'table.html' %}
+{% endblock %}

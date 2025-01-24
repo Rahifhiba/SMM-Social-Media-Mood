@@ -1,0 +1,12 @@
+<div class="result">
+    {% if topic %}
+        {% if data %}
+            <h3>Showing results for "{{ topic }}"</h3>
+            <div class="posts">
+                {{ data|safe }}
+            </div>
+        {% elif error %}
+            <div class="error">{{ error }}</div>
+        {% endif %}
+    {% endif %}
+</div>
