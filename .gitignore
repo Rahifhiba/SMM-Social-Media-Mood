@@ -2,3 +2,5 @@
 test.py
 client_config.py
 __pycache__/
+notebook_env.db
+model.joblib
