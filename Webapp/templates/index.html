@@ -2,10 +2,20 @@
 
 {% block content %}
     <div class="img">
-        <img src="{{ url_for('static', filename='images/default.png') }}" alt="emojie" class="emojie">
+        {% if data%}
+            {% if positive_percentage > negative_percentage and negative_percentage > neutral_percentage %}
+                <img src="{{ url_for('static', filename='images/happy.png') }}" alt="emojie" class="emojie">
+            {% elif negative_percentage > positive_percentage and negative_percentage > neutral_percentage %}
+                <img src="{{ url_for('static', filename='images/sad.png') }}" alt="emojie" class="emojie">
+            {% else %}
+                <img src="{{ url_for('static', filename='images/neutral.png') }}" alt="emojie" class="emojie">
+            {% endif %}
+        {% else %}
+            <img src="{{ url_for('static', filename='images/default.png') }}" alt="emojie" class="emojie">
+        {% endif %}
     </div>
     <div class="container">
-        <form method="POST" action="/analyze/">
+        <form method="POST" action="/predict/">
             <h1>Social Media Mood</h1>
             <h2>Sentiment Analysis Of Social Media Posts</h2>
             <h3>Enter a topic to analyze the sentiment of social media posts</h3><br>

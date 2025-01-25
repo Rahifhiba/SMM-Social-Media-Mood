@@ -1,7 +1,11 @@
 <div class="result">
     {% if topic %}
         {% if data %}
-            <h3>Showing results for "{{ topic }}"</h3>
+            <h2>Showing results for "{{ topic }}"</h2>
+            <p class="pos">Positive posts: {{ positive_percentage }}%</p>
+            <p class="neut">Neutral posts: {{ neutral_percentage }}%</p>
+            <p class="neg">Negative posts: {{ negative_percentage }}%</p>
+
             <div class="posts">
                 {{ data|safe }}
             </div>

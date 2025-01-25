@@ -5,7 +5,7 @@ import os
 import pandas as pd
 import praw
 from langdetect import detect, LangDetectException
-
+from TextPreprocessing import TextPreprocessor
 load_dotenv()
 
 def is_eng(text):
@@ -16,6 +16,13 @@ def is_eng(text):
         return detect(combined) == 'en'
     except LangDetectException:
         return False
+
+def clean_posts(posts):
+    """clean posts"""
+    posts = posts.apply(lambda x: x.replace("\n", " "))
+    preprocessor = TextPreprocessor()
+    posts = posts.apply(preprocessor.preprocess)
+    return posts
 
 
 def get_reddit_posts(search_query):
@@ -36,11 +43,16 @@ def get_reddit_posts(search_query):
             if is_eng(content):
                 posts_data.append(
                     {
-                        "title": post.title,
                         "author": post.author.name if post.author else "[Deleted]",
+                        "title": post.title,
                         "text": post.selftext,
                     }
                 )
 
     df_posts = pd.DataFrame(posts_data)
+    df_posts["cleaned_text"] = clean_posts(df_posts["text"])
+    df_posts.dropna( inplace=True)
+    print("NaNs after cleaning:", df_posts["cleaned_text"].isna().sum())
     df_posts.to_csv("posts.csv", index=False)
+
+

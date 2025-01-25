@@ -30,7 +30,7 @@ body {
 .result {
       text-align: center;
     margin: auto;
-    width: 50%;
+    width: 80%;
     padding: 10px;
 
 }
@@ -41,7 +41,16 @@ body {
     /* border: 1px solid #b90000; */
 }
 
-table.dataframe {}
+.dataframe {
+    table-layout: fixed; /* Ensures columns respect width settings */
+    width: 100%;
+    /* Other existing styles */
+    border-collapse: collapse;
+    margin-left: auto;
+    margin-right: auto;
+    border: 1px solid black;
+}
+
 
 tr {
     background: #192227;
@@ -51,6 +60,8 @@ tr {
 
 th, td {
     padding: 7px;
+    width: 100%;
+
 }
 
 .dataframe {
@@ -69,6 +80,10 @@ th, td {
 
 .pos {
     color: rgb(92, 207, 92);
+    font-weight: bold;
+}
+.neut {
+    color: rgb(211, 211, 211);
     font-weight: bold;
 }
 
