@@ -2,17 +2,20 @@
 
 {% block content %}
     <div class="img">
-        {% if data%}
-            {% if positive_percentage > negative_percentage and negative_percentage > neutral_percentage %}
-                <img src="{{ url_for('static', filename='images/happy.png') }}" alt="emojie" class="emojie">
+        {% if data %}
+            {% if positive_percentage > negative_percentage and positive_percentage > neutral_percentage %}
+                <img src="{{ url_for('static', filename='images/happy.png') }}" alt="emoji" class="emojis">
             {% elif negative_percentage > positive_percentage and negative_percentage > neutral_percentage %}
-                <img src="{{ url_for('static', filename='images/sad.png') }}" alt="emojie" class="emojie">
+                <img src="{{ url_for('static', filename='images/sad.png') }}" alt="emoji" class="emojis">
+            {% elif neutral_percentage > positive_percentage and neutral_percentage > negative_percentage %}
+                <img src="{{ url_for('static', filename='images/neutral.png') }}" alt="emoji" class="emojis">
             {% else %}
-                <img src="{{ url_for('static', filename='images/neutral.png') }}" alt="emojie" class="emojie">
+                <img src="{{ url_for('static', filename='images/default_emoji.png') }}" alt="emoji" class="emojis">
             {% endif %}
         {% else %}
-            <img src="{{ url_for('static', filename='images/default.png') }}" alt="emojie" class="emojie">
+            <img src="{{ url_for('static', filename='images/default.png') }}" alt="emoji" class="emojis">
         {% endif %}
+
     </div>
     <div class="container">
         <form method="POST" action="/predict/">

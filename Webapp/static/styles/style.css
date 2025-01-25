@@ -5,7 +5,7 @@ body {
     color: rgb(233, 239, 250);
 }
 
-.emojie {
+.emojis {
     width: 10%;
     padding: 10px;
     max-width: 100%;
@@ -130,4 +130,61 @@ th {
 
 tbody {
     background-color: rgb(252, 254, 255);
+}
+
+
+/* ********************************* */
+/*
+.sentiment-bar {
+
+
+        background: linear-gradient(to right, #be4c3d, #5ccf5c);
+        width: 200px;
+        height: 30px;
+        margin-left: auto ;
+        margin-right: auto;
+        border-radius: 5px;
+} */
+
+
+
+.sentiment-container {
+    text-align: center;
+    margin: 20px auto;
+    width: fit-content;
+}
+
+.sentiment-bar {
+    display: flex;
+    width: 300px;
+    height: 30px;
+    border-radius: 5px;
+    overflow: hidden; /* Ensures rounded corners work with child elements */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.neg-segment {
+    background: #be4c3d; /* Red */
+    transition: width 0.3s ease; /* Smooth animation when percentages change */
+}
+
+.neut-segment {
+    background: #d8cd45; /* Yellow */
+    transition: width 0.3s ease;
+}
+
+.pos-segment {
+    background: #5ccf5c; /* Green */
+    transition: width 0.3s ease;
+}
+
+.sentiment-labels {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+    font-size: 0.9em;
+}
+
+.neut {
+    color: #d8cd45; /* Match the neutral segment color */
 }

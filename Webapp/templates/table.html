@@ -2,9 +2,18 @@
     {% if topic %}
         {% if data %}
             <h2>Showing results for "{{ topic }}"</h2>
-            <p class="pos">Positive posts: {{ positive_percentage }}%</p>
-            <p class="neut">Neutral posts: {{ neutral_percentage }}%</p>
-            <p class="neg">Negative posts: {{ negative_percentage }}%</p>
+            <div class="sentiment-container">
+                <div class="sentiment-bar">
+                    <div class="neg-segment" style="width: {{ negative_percentage }}%;"></div>
+                    <div class="neut-segment" style="width: {{ neutral_percentage }}%;"></div>
+                    <div class="pos-segment" style="width: {{ positive_percentage }}%;"></div>
+                </div>
+                <div class="sentiment-labels">
+                    <p class="neg">{{ negative_percentage }}%</p>
+                    <p class="neut">{{ neutral_percentage }}%</p>
+                    <p class="pos">{{ positive_percentage }}%</p>
+                </div>
+            </div>
 
             <div class="posts">
                 {{ data|safe }}
