@@ -10,17 +10,18 @@ Web application that allows users to search a topic and check general opinion's 
 ```
 Directory structure:
 └── rahifhiba-smm-social-media-mood/
+    ├── README.md
     ├── model.joblib
     ├── notebook.ipynb
     ├── notebook_env.db
+    ├── requirements.txt
     ├── train.csv
     └── Webapp/
-        ├── README.md
         ├── Reddit_posts.py
         ├── TextPreprocessing.py
         ├── app.py
         ├── posts.csv
-        ├── scrapping.py
+        ├── requirements.txt
         ├── models/
         │   ├── sentiment_analysis_82%.joblib
         │   └── tfidf_vectorizer.pkl
@@ -29,11 +30,10 @@ Directory structure:
         │   └── styles/
         │       └── style.css
         └── templates/
-            ├── bar.html
             ├── base.html
+            ├── base_error.html
             ├── index.html
             └── table.html
-
 ```
 ## 💿 Installation:
 for  nootbook:
