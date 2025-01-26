@@ -1,7 +1,10 @@
 <div class="result">
-    {% if topic %}
+    {% if error %}
+            <div class="error">{{ error }}</div>
+    {% elif topic %}
         {% if data %}
             <h2>Showing results for "{{ topic }}"</h2>
+                <p>{{ num_posts }} posts have been scrapped.</p>
             <div class="sentiment-container">
                 <div class="sentiment-bar">
                     <div class="neg-segment" style="width: {{ negative_percentage }}%;"></div>
@@ -18,8 +21,8 @@
             <div class="posts">
                 {{ data|safe }}
             </div>
-        {% elif error %}
-            <div class="error">{{ error }}</div>
+        {% else %}
+            <div class="error">No posts found for "{{ topic }}"</div>
         {% endif %}
     {% endif %}
 </div>

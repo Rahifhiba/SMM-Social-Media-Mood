@@ -50,9 +50,16 @@ def get_reddit_posts(search_query):
                 )
 
     df_posts = pd.DataFrame(posts_data)
+    if df_posts.empty:
+        print("No posts found")
+        return False
     df_posts["cleaned_text"] = clean_posts(df_posts["text"])
     df_posts.dropna( inplace=True)
+    if df_posts.empty:
+        print("All posts were filtered out during cleaning")
+        return False
     print("NaNs after cleaning:", df_posts["cleaned_text"].isna().sum())
     df_posts.to_csv("posts.csv", index=False)
+    return True
 
 

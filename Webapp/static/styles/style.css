@@ -1,4 +1,5 @@
 
+
 body {
     font-family: Helvetica;
     background-color: rgb(33, 37, 39);
@@ -44,7 +45,6 @@ body {
 .dataframe {
     table-layout: fixed; /* Ensures columns respect width settings */
     width: 100%;
-    /* Other existing styles */
     border-collapse: collapse;
     margin-left: auto;
     margin-right: auto;
@@ -55,12 +55,11 @@ body {
 tr {
     background: #192227;
     color: #e9effa;
-    /* padding: 10px; */
 }
 
 th, td {
     padding: 7px;
-    width: 100%;
+    word-wrap:break-word;
 
 }
 
@@ -73,7 +72,7 @@ th, td {
     border: 1px solid black;
 }
 
-.Error, .neg {
+.error, .neg {
     color: rgb(190, 76, 61);
     font-weight: bold;
 }
@@ -134,20 +133,7 @@ tbody {
 
 
 /* ********************************* */
-/*
-.sentiment-bar {
-
-
-        background: linear-gradient(to right, #be4c3d, #5ccf5c);
-        width: 200px;
-        height: 30px;
-        margin-left: auto ;
-        margin-right: auto;
-        border-radius: 5px;
-} */
-
-
-
+/* Sentiment Bar CSS */
 .sentiment-container {
     text-align: center;
     margin: 20px auto;
@@ -159,7 +145,7 @@ tbody {
     width: 300px;
     height: 30px;
     border-radius: 5px;
-    overflow: hidden; /* Ensures rounded corners work with child elements */
+    overflow: hidden;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
